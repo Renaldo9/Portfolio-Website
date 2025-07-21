@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renaldo Jardim - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="animated-background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo gradient-text">RJ</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#academics">Academics</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <a href="https://github.com/Renaldo9" target="_blank" class="nav-button">
+                    GitHub Profile
+                </a>
+                <button id="theme-toggle" class="theme-toggle-button">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+            <button id="mobile-menu-button" class="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="mobile-nav">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#academics">Academics</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <a href="https://github.com/Renaldo9" target="_blank" class="nav-button">GitHub</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <img src="https://avatars.githubusercontent.com/u/125867623?v=4" alt="Renaldo Jardim" class="profile-img">
+            <h1>Hi, I'm <span class="gradient-text">Renaldo Jardim</span></h1>
+            <p class="subtitle">
+                A passionate and driven Software Developer building modern, responsive web applications. Currently studying at Belgium Campus iTversity.
+            </p>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="content-section">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>
+                    I'm currently pursuing a Bachelor of Computing at Belgium Campus iTversity. My journey in tech is fueled by a deep curiosity and a passion for problem-solving. I enjoy turning complex problems into simple, beautiful, and intuitive designs.
+                </p>
+                <p>
+                    I am always eager to learn and embrace new challenges in software development, constantly looking for opportunities to grow and improve my skills.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="content-section">
+            <h2>My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Java</div>
+                <div class="skill-item">Spring</div>
+                <div class="skill-item">C#</div>
+                <div class="skill-item">.NET</div>
+                <div class="skill-item">HTML</div>
+                <div class="skill-item">CSS</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">MySQL</div>
+                <div class="skill-item">PostgreSQL</div>
+                <div class="skill-item">MongoDB</div>
+            </div>
+        </section>
+
+        <!-- Academics Section -->
+        <section id="academics" class="content-section">
+            <h2>Academics</h2>
+            <div class="academic-item">
+                <h3>Bachelor of Computing</h3>
+                <p>Belgium Campus iTversity, Pretoria</p>
+                <p><em>(2023 - Present)</em></p>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="content-section">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="card">
+                    <h3>Language Learning Game</h3>
+                    <p>A Java-based text adventure game designed to teach language through interactive storytelling and puzzles.</p>
+                    <a href="https://github.com/Renaldo9/Language-learning-game" target="_blank">View on GitHub &rarr;</a>
+                </div>
+                <div class="card">
+                    <h3>E-commerce Website</h3>
+                    <p>A full-stack e-commerce platform with features like product catalog, shopping cart, and user authentication.</p>
+                    <a href="https://github.com/Renaldo9" target="_blank">View on GitHub &rarr;</a>
+                </div>
+                <div class="card">
+                    <h3>Portfolio Website</h3>
+                    <p>This very portfolio, built with HTML, CSS, and JavaScript to showcase my skills and projects.</p>
+                    <a href="https://github.com/Renaldo9" target="_blank">View on GitHub &rarr;</a>
+                </div>
+            </div>
+            <div class="see-more-container">
+                <a href="projects.html" class="cta-button">See More Projects</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-section contact-section">
+            <h2>Get In Touch</h2>
+            <p>I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out!</p>
+            <div class="contact-links">
+                <a href="mailto:renaldo.jardim.student@belgiumcampus.ac.za"><i class="fas fa-envelope"></i> renaldo.jardim.student@belgiumcampus.ac.za</a>
+                <a href="tel:+27123456789"><i class="fas fa-phone"></i> +27 12 345 6789</a>
+                <a href="https://github.com/Renaldo9" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Renaldo Jardim. All Rights Reserved.</p>
+            <p>Built with <span class="heart">&hearts;</span> and a lot of coffee.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
