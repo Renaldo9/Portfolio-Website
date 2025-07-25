@@ -16,6 +16,8 @@
     --secondary-color: #EF3340; /* Belgium Red */
     --text-muted: #9ca3af;
     --shadow-color: rgba(0, 0, 0, 0.2);
+    --tag-bg: #4A4A4A;
+    --tag-text: #E0E0E0;
 }
 
 body.light-mode {
@@ -27,6 +29,8 @@ body.light-mode {
     --secondary-color: #D9232E; /* Darker Red for light bg */
     --text-muted: #555;
     --shadow-color: rgba(0, 0, 0, 0.1);
+    --tag-bg: #EAEAEA;
+    --tag-text: #333;
 }
 /* ----------------------- */
 
@@ -177,10 +181,36 @@ main { padding-top: 80px; }
 
 /* Hero Section */
 .hero-section { padding: 6rem 0; }
-.profile-img { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--primary-color); margin: 0 auto 1.5rem; box-shadow: 0 0 20px var(--primary-color); }
+
+.profile-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    padding: 5px; /* Space for the gradient border */
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), #000);
+    background-size: 200% 200%;
+    animation: gradient-spin 4s linear infinite, subtle-float 6s ease-in-out infinite;
+}
+
+.profile-img:hover {
+    animation-play-state: paused, running; /* Pause gradient spin on hover */
+}
+
+@keyframes gradient-spin {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes subtle-float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
 .subtitle { max-width: 600px; margin: 1rem auto 0; font-size: 1.25rem; color: var(--text-muted); }
 
-/* Download CV Button */
 .hero-section button {
     margin-top: 2rem;
     background-color: var(--primary-color);
@@ -213,27 +243,111 @@ main { padding-top: 80px; }
 .skill-item { background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 0.75rem 1.5rem; border-radius: 20px; font-weight: 500; transition: transform 0.2s, border-color 0.2s; }
 .skill-item:hover { transform: scale(1.1); border-color: var(--primary-color); }
 
-/* Academics Section */
-#academics .academic-item {
-    background-color: var(--card-bg);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    max-width: 600px;
+/* Academics Timeline */
+#academics .academic-timeline {
+    position: relative;
+    max-width: 800px;
     margin: 0 auto;
-    text-align: left;
-}
-#academics .academic-item:not(:last-child) {
-    margin-bottom: 2rem;
+    padding: 2rem 0;
 }
 
+#academics .academic-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background-color: var(--border-color);
+    border-radius: 2px;
+}
 
-/* Projects & Cards */
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: left; }
-.card { background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 2rem; border-radius: 12px; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
-.card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px var(--shadow-color); border-color: var(--primary-color); }
-.card p { flex-grow: 1; }
-.card a { font-weight: 500; }
+#academics .academic-item {
+    padding: 1rem 3rem;
+    position: relative;
+    width: 50%;
+}
+#academics .academic-item:nth-child(odd) { left: 0; text-align: right; padding-right: 4rem; }
+#academics .academic-item:nth-child(even) { left: 50%; text-align: left; padding-left: 4rem; }
+
+#academics .academic-item::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: var(--primary-color);
+    border: 4px solid var(--bg-color);
+    top: 20px;
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+#academics .academic-item:nth-child(odd)::after { right: -12.5px; }
+#academics .academic-item:nth-child(even)::after { left: -12.5px; }
+#academics .academic-item:hover::after { transform: scale(1.2); background-color: var(--secondary-color); }
+#academics .academic-item h3 { color: var(--primary-color); }
+
+
+/* --- UPDATED PROJECT CARD STYLES --- */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; text-align: left; }
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px var(--shadow-color);
+    border-color: var(--primary-color);
+}
+.card h3, .card p, .card .project-tags {
+    padding: 0 2rem;
+}
+.card h3 {
+    padding-top: 2rem;
+}
+.card p {
+    flex-grow: 1;
+    color: var(--text-muted);
+}
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    /* This margin creates the gap between the tags and the link below */
+    margin-bottom: 1.5rem;
+}
+.tag {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.github-link {
+    display: block;
+    background-color: var(--primary-color);
+    color: #1A1A1A;
+    text-align: center;
+    /* Reduced padding to make the button smaller */
+    padding: 0.8rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.github-link:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+.github-link i {
+    margin-left: 0.5rem;
+}
+/* ------------------------------------- */
 
 .see-more-container { margin-top: 3rem; }
 .cta-button { background-color: var(--primary-color); color: #1A1A1A; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease, color 0.3s ease; }
@@ -261,5 +375,10 @@ footer { background-color: transparent; text-align: center; padding: 2rem; margi
     .mobile-nav.active { display: flex; }
     header nav { padding: 1rem; }
     .container { padding: 0 1rem; }
-}
 
+    #academics .academic-timeline::before { left: 15px; }
+    #academics .academic-item { width: 100%; padding-left: 50px; padding-right: 1rem; text-align: left; }
+    #academics .academic-item:nth-child(odd),
+    #academics .academic-item:nth-child(even) { left: 0; text-align: left; }
+    #academics .academic-item::after { left: 2.5px; }
+}
